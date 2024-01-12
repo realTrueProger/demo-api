@@ -3,6 +3,7 @@ package com.isollo.demoapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,8 +27,17 @@ public class DemoApiApplication {
 	}
 
 	@GetMapping("/customers")
-	public List<Customer> getHello() {
+	public List<Customer> getCustomers() {
 		return customers;
+	}
+
+	@GetMapping("/customers/{id}")
+	public Customer getCustomer(@PathVariable("id") Integer id) {
+		return customers
+				.stream()
+				.filter(customer -> customer.getId().equals(id))
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException("Customer with id getCustomers" + id + " not found"));
 	}
 
 	static class Customer {
