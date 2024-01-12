@@ -1,5 +1,6 @@
 package com.isollo.demoapi.customer;
 
+import com.isollo.demoapi.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public class CustomerService {
     public Customer getCustomer(Integer id) {
         return customerDao
                 .getCustomer(id)
-                .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
+                .orElseThrow(() -> new ResourceNotFound("Customer not found"));
     }
 }
