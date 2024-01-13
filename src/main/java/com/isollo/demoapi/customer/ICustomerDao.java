@@ -8,4 +8,6 @@ public interface ICustomerDao {
     Optional<Customer> getCustomer(Integer id);
     void insertCustomer(Customer customer);
     boolean existCustomerWithEmail(String email);
+    boolean existCustomerWithId(Integer id);
+    void deleteCustomer(Integer id);
 }

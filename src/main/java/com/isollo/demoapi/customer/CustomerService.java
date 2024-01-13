@@ -31,4 +31,12 @@ public class CustomerService {
 
         customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email()));
     }
+
+    public void deleteCustomer(Integer id) {
+        if(!customerDao.existCustomerWithId(id)) {
+            throw new ResourceNotFound("Customer not found");
+        }
+
+        customerDao.deleteCustomer(id);
+    }
 }
