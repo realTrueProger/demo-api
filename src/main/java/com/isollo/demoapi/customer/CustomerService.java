@@ -1,7 +1,6 @@
 package com.isollo.demoapi.customer;
 
 import com.isollo.demoapi.exception.ResourceNotFound;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class CustomerService {
     private final ICustomerDao customerDao;
 
-    public CustomerService(@Qualifier("JPA") ICustomerDao customerDao) {
+    public CustomerService(ICustomerDao customerDao) {
         this.customerDao = customerDao;
     }
 
