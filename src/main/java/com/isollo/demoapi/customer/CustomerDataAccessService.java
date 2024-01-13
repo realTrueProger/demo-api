@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("List")
 public class CustomerDataAccessService implements ICustomerDao {
     //db
     private static final ArrayList<Customer> customers;
