@@ -1,5 +1,6 @@
 package com.isollo.demoapi.customer;
 
+import com.isollo.demoapi.exception.DuplicateRecord;
 import com.isollo.demoapi.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,13 @@ public class CustomerService {
         return customerDao
                 .getCustomer(id)
                 .orElseThrow(() -> new ResourceNotFound("Customer not found"));
+    }
+
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+        if (customerDao.existCustomerWithEmail(customerRegistrationRequest.email())) {
+            throw new DuplicateRecord("Customer with such email already exists");
+        }
+
+        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email()));
     }
 }
