@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.CONFLICT)
-public class DuplicateRecord extends RuntimeException {
-    public DuplicateRecord(String message) {
+public class DuplicateRecordException extends RuntimeException {
+    public DuplicateRecordException(String message) {
         super(message);
     }
 }
