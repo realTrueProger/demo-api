@@ -17,16 +17,18 @@ public class StudentConfiguration {
             );
             studentRepository.save(vladimir);
 
-            studentRepository.findById(3L).ifPresentOrElse(
-                    System.out::println,
-                    () -> System.out.println("Student with id 3 not found")
-            );
+//            studentRepository.findById(3L).ifPresentOrElse(
+//                    System.out::println,
+//                    () -> System.out.println("Student with id 3 not found")
+//            );
+//
+//            System.out.println("query result :");
+//            studentRepository.findStudentByEmailNative("vova@yandex.ru").ifPresentOrElse(
+//                    System.out::println,
+//                    () -> System.out.println("Student with email vova@yandex.ru not found")
+//            );
 
-            System.out.println("query result :");
-            studentRepository.findStudentByEmailNative("vova@yandex.ru").ifPresentOrElse(
-                    System.out::println,
-                    () -> System.out.println("Student with email vova@yandex.ru not found")
-            );
+            studentRepository.deleteStudentById(1L);
         };
     }
 }
