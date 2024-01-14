@@ -6,6 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
+    // JPQL
     @Query("SELECT s from Student s where s.email = ?1")
     Optional<Student> findStudentByEmail(String email);
+
+    // native query example
+    @Query(value = "SELECT * from student where email = ?1", nativeQuery = true)
+    Optional<Student> findStudentByEmailNative(String email);
 }

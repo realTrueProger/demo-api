@@ -22,9 +22,10 @@ public class StudentConfiguration {
                     () -> System.out.println("Student with id 3 not found")
             );
 
-            studentRepository.findStudentByEmail("vova@yandex.ru").ifPresentOrElse(
+            System.out.println("query result :");
+            studentRepository.findStudentByEmailNative("vova@yandex.ru").ifPresentOrElse(
                     System.out::println,
-                    () -> System.out.println("Student with id 3 not found")
+                    () -> System.out.println("Student with email vova@yandex.ru not found")
             );
         };
     }
