@@ -21,6 +21,11 @@ public class StudentConfiguration {
                     System.out::println,
                     () -> System.out.println("Student with id 3 not found")
             );
+
+            studentRepository.findStudentByEmail("vova@yandex.ru").ifPresentOrElse(
+                    System.out::println,
+                    () -> System.out.println("Student with id 3 not found")
+            );
         };
     }
 }
