@@ -1,5 +1,6 @@
 package com.isollo.demoapi.student;
 
+import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
@@ -9,13 +10,18 @@ public class StudentConfiguration {
     @Bean
     CommandLineRunner studentConfig(StudentRepository studentRepository) {
         return args -> {
-            Student vladimir = new Student(
-                    "Vladimir",
-                    "Solovev",
-                    "vova@yandex.ru",
-                    36
-            );
-            studentRepository.save(vladimir);
+            Faker faker = new Faker();
+
+            for (int i = 0; i < 20; i++) {
+                Student student = new Student(
+                        faker.name().firstName(),
+                        faker.name().lastName(),
+                        faker.name().firstName() + "@mail.ru",
+                        faker.number().numberBetween(18, 55)
+                );
+
+                studentRepository.save(student);
+            }
 
 //            studentRepository.findById(3L).ifPresentOrElse(
 //                    System.out::println,
@@ -27,8 +33,6 @@ public class StudentConfiguration {
 //                    System.out::println,
 //                    () -> System.out.println("Student with email vova@yandex.ru not found")
 //            );
-
-            studentRepository.deleteStudentById(1L);
         };
     }
 }
