@@ -11,10 +11,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StudentConfiguration {
     @Bean
-    CommandLineRunner studentConfig(StudentRepository studentRepository) {
+    CommandLineRunner studentConfig(StudentRepository studentRepository, StudentIdCardRepository studentIdCardRepository) {
         return args -> {
-            generateStudents(studentRepository);
+            Faker faker = new Faker();
 
+            Student student = new Student(
+                    faker.name().firstName(),
+                    faker.name().lastName(),
+                    faker.name().firstName() + "@mail.ru",
+                    faker.number().numberBetween(18, 55)
+            );
+
+            studentIdCardRepository.save(new StudentIdCard("12345", student));
         };
     }
 
@@ -45,7 +53,7 @@ public class StudentConfiguration {
     private static void generateStudents(StudentRepository studentRepository) {
         Faker faker = new Faker();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             Student student = new Student(
                     faker.name().firstName(),
                     faker.name().lastName(),
