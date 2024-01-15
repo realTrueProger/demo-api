@@ -23,6 +23,8 @@ public class StudentConfiguration {
             );
 
             studentIdCardRepository.save(new StudentIdCard("12345", student));
+
+            studentIdCardRepository.findById(1L).ifPresent(System.out::println);
         };
     }
 
