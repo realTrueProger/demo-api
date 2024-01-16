@@ -1,11 +1,16 @@
 package com.isollo.demoapi.student;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "Book")
 @Table(name = "book")
+@NoArgsConstructor
+@Getter @Setter
+@ToString
+@EqualsAndHashCode
 public class Book {
     @Id
     @SequenceGenerator(
@@ -45,54 +50,9 @@ public class Book {
     )
     private Student student;
 
-    public Book() {
-    }
-
     public Book(LocalDateTime createdAt, Student student, String bookName) {
         this.createdAt = createdAt;
         this.student = student;
         this.bookName = bookName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", student=" + student +
-                ", bookName='" + bookName + '\'' +
-                '}';
     }
 }
