@@ -28,7 +28,7 @@ public class StudentConfiguration {
                     faker.number().numberBetween(18, 55)
             );
 
-            bookRepository.save(new Book(LocalDateTime.now(), student, "Scrum"));
+            studentRepository.save(student);
         };
     }
 
