@@ -2,6 +2,9 @@ package com.isollo.demoapi.student;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "Student")
 public class Student {
     @Id
@@ -42,6 +45,13 @@ public class Student {
             nullable = false
     )
     private Integer age;
+
+    @OneToMany(
+            mappedBy = "student",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    private List<Book> books = new ArrayList<>();
 
     public Student() {
     }
