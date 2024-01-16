@@ -8,10 +8,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 @Repository
 public class StudentConfiguration {
     @Bean
-    CommandLineRunner studentConfig(StudentRepository studentRepository, StudentIdCardRepository studentIdCardRepository) {
+    CommandLineRunner studentConfig(
+            StudentRepository studentRepository,
+            StudentIdCardRepository studentIdCardRepository,
+            BookRepository bookRepository
+    ) {
         return args -> {
             Faker faker = new Faker();
 
@@ -22,9 +28,7 @@ public class StudentConfiguration {
                     faker.number().numberBetween(18, 55)
             );
 
-            studentIdCardRepository.save(new StudentIdCard("12345", student));
-
-            studentIdCardRepository.findById(1L).ifPresent(System.out::println);
+            bookRepository.save(new Book(LocalDateTime.now(), student, "Scrum"));
         };
     }
 
