@@ -28,7 +28,9 @@ public class StudentConfiguration {
                     faker.number().numberBetween(18, 55)
             );
 
-            studentRepository.save(student);
+            //studentRepository.save(student);
+            studentIdCardRepository.save(new StudentIdCard("12345", student));
+            studentIdCardRepository.findById(1L).ifPresent(System.out::println);
         };
     }
 

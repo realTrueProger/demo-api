@@ -51,12 +51,15 @@ public class Student {
     )
     private Integer age;
 
-    @OneToMany(
-            mappedBy = "student",
-            orphanRemoval = true,
-            cascade = CascadeType.ALL
-    )
-    private List<Book> books = new ArrayList<>();
+//    @OneToOne(mappedBy = "student")
+//    private StudentIdCard studentIdCard;
+
+//    @OneToMany(
+//            mappedBy = "student",
+//            orphanRemoval = true,
+//            cascade = CascadeType.ALL
+//    )
+//    private List<Book> books = new ArrayList<>();
 
     public Student(String firstName, String lastName, String email, Integer age) {
         this.firstName = firstName;
