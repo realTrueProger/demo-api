@@ -30,7 +30,7 @@ public class StudentConfiguration {
 
             //studentRepository.save(student);
             studentIdCardRepository.save(new StudentIdCard("12345", student));
-            studentIdCardRepository.findById(1L).ifPresent(System.out::println);
+            studentRepository.deleteById(1L);
         };
     }
 
