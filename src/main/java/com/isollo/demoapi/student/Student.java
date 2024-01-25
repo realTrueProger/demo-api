@@ -57,17 +57,30 @@ public class Student {
     )
     private StudentIdCard studentIdCard;
 
-//    @OneToMany(
-//            mappedBy = "student",
-//            orphanRemoval = true,
-//            cascade = CascadeType.ALL
-//    )
-//    private List<Book> books = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
+    private List<Book> books = new ArrayList<>();
 
     public Student(String firstName, String lastName, String email, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.age = age;
+    }
+
+    public void addBook(Book book) {
+        if(!this.books.contains(book)) {
+            this.books.add(book);
+            book.setStudent(this);
+        }
+    }
+
+    public void removeBook(Book book) {
+        if(this.books.contains(book)) {
+            this.books.remove(book);
+            book.setStudent(null);
+        }
     }
 }

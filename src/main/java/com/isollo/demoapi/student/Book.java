@@ -46,6 +46,7 @@ public class Book {
     @JoinColumn(
             name = "student_id",
             referencedColumnName = "id",
+            nullable = false,
             foreignKey = @ForeignKey(name = "student_book_fk")
     )
     private Student student;
@@ -53,6 +54,11 @@ public class Book {
     public Book(LocalDateTime createdAt, Student student, String bookName) {
         this.createdAt = createdAt;
         this.student = student;
+        this.bookName = bookName;
+    }
+
+    public Book(LocalDateTime createdAt, String bookName) {
+        this.createdAt = createdAt;
         this.bookName = bookName;
     }
 }

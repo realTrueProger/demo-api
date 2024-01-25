@@ -28,9 +28,10 @@ public class StudentConfiguration {
                     faker.number().numberBetween(18, 55)
             );
 
-            //studentRepository.save(student);
-            studentIdCardRepository.save(new StudentIdCard("12345", student));
-            studentRepository.deleteById(1L);
+            student.addBook(new Book(LocalDateTime.now(), "Agile"));
+            student.addBook(new Book(LocalDateTime.now(), "Scrum guide"));
+
+            studentIdCardRepository.save(new StudentIdCard("123", student));
         };
     }
 
