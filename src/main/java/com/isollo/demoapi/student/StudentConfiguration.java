@@ -19,19 +19,7 @@ public class StudentConfiguration {
             BookRepository bookRepository
     ) {
         return args -> {
-            Faker faker = new Faker();
-
-            Student student = new Student(
-                    faker.name().firstName(),
-                    faker.name().lastName(),
-                    faker.name().firstName() + "@mail.ru",
-                    faker.number().numberBetween(18, 55)
-            );
-
-            student.addBook(new Book(LocalDateTime.now(), "Agile"));
-            student.addBook(new Book(LocalDateTime.now(), "Scrum guide"));
-
-            studentIdCardRepository.save(new StudentIdCard("123", student));
+            generateStudents(studentRepository);
         };
     }
 
