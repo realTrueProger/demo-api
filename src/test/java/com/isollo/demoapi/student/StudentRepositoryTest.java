@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
+
 @DataJpaTest
 class StudentRepositoryTest {
     @Autowired
@@ -15,9 +16,8 @@ class StudentRepositoryTest {
     @Test
     void itShouldFindStudentByEmailNative() {
         // Given
-        long id = 1L;
         String mail = "vovasollo@yandex.ru";
-        Student student = new Student(id, "Vladimir", "Solovev", mail, 36);
+        Student student = new Student("Vladimir", "Solovev", mail, 36);
 
         // When
         underTest.save(student);
@@ -31,14 +31,13 @@ class StudentRepositoryTest {
     @Test
     void itShouldSaveStudent() {
         // Given
-        long id = 2L;
-        Student student = new Student(id, "Vladimir", "Solovev", "vovasollo@yandex.ru", 36);
+        Student student = new Student("Vladimir", "Solovev", "vovasollo@yandex.ru", 36);
 
         // When
         underTest.save(student);
 
         // Then
-        Optional<Student> byId = underTest.findById(id);
+        Optional<Student> byId = underTest.findById(2L);
         assertThat(byId)
                 .isPresent()
                 .hasValueSatisfying(c -> {
