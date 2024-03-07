@@ -3,6 +3,7 @@ services:
     container_name: postgres
     image: postgres
     environment:
+      POSTGRES_DB: "intr_db"
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       PGDATA: /data/postgres
@@ -10,6 +11,26 @@ services:
       - db:/data/postgres
     ports:
       - "5432:5432"
+  db2:
+    container_name: postgres2
+    image: postgres
+    environment:
+      POSTGRES_DB: "subo_database"
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      PGDATA: /data/postgres
+    volumes:
+      - db2:/data/postgres
+    ports:
+      - "5433:5432"
+  cache:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - cache:/data
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
@@ -31,3 +52,5 @@ services:
 
 volumes:
   db:
+  db2:
+  cache:
